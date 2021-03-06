@@ -7,7 +7,11 @@ const setLocalCartList = (state) => {
 }
 
 const getLocalCartList = () => {
-  return JSON.parse(localStorage.cartList) || {}
+  try {
+    return JSON.parse(localStorage.cartList)
+  } catch (e) {
+    return {}
+  }
 }
 
 export default createStore({
@@ -65,6 +69,9 @@ export default createStore({
         }
       }
       setLocalCartList(state)
+    },
+    clearCartData (state, shopId) {
+      state.cartList[shopId].productList = {}
     }
   },
   actions: {

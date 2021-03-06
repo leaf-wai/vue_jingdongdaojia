@@ -2,13 +2,13 @@
   <div class="docker">
     <div
       class="docker__item"
-      :class="{ docker__item: true, 'docker__item--active': index === page }"
+      :class="{ docker__item: true, 'docker__item--active': index === currentIndex }"
       v-for="(item, index) in dockerList"
       :key="item.icon"
     >
-      <router-link :to='item.to'>
-        <div class="iconfont" v-html="item.icon" v-show="!(index===page)"></div>
-        <div class="iconfont" v-html="item.icon_active" v-show="index===page"></div>
+      <router-link :to="item.to">
+        <div class="iconfont" v-html="item.icon" v-show="!(index===currentIndex)"></div>
+        <div class="iconfont" v-html="item.icon_active" v-show="index===currentIndex"></div>
         <div class="docker__title">{{ item.text }}</div>
       </router-link>
     </div>
@@ -17,7 +17,7 @@
 <script>
 export default {
   name: 'Docker',
-  props: ['page'],
+  props: ['currentIndex'],
   setup () {
     const dockerList = [
       {
@@ -36,7 +36,7 @@ export default {
         icon: '&#xe714;',
         icon_active: '&#xe713;',
         text: '订单',
-        to: { name: 'Home' }
+        to: { name: 'OrderList' }
       },
       {
         icon: '&#xe78b;',
@@ -60,7 +60,7 @@ export default {
   bottom: 0;
   width: 100%;
   height: 0.49rem;
-  border-top: 1px solid $content-bgColor;
+  border-top: 0.01rem solid $content-bgColor;
   color: $content-fontcolor;
   &__item {
     flex: 1;

@@ -3,24 +3,16 @@
     <div class="cart">
       <div class="product">
         <div class="product__header">
-          <div
-            class="product__header__all"
-            @click="() => setCartItemsChecked(shopId)"
-          >
+          <div class="product__header__all" @click="() => setCartItemsChecked(shopId)">
             <span
               class="product__header__icon iconfont"
               v-html="calculations.allChecked ? '&#xe656;' : '&#xe657;'"
-            >
-            </span>
+            ></span>
             全选
           </div>
           <div class="product__header__title">购物车</div>
           <div class="product__header__clear">
-            <span
-              @click="() => cleanCartProducts(shopId)"
-              class="product__header__clear__btn"
-              >清空</span
-            >
+            <span @click="() => cleanCartProducts(shopId)" class="product__header__clear__btn">清空</span>
           </div>
         </div>
         <div class="product__shop">
@@ -42,10 +34,11 @@
             <div class="product__item__detail">
               <h4 class="product__item__title">{{ item.name }}</h4>
               <p class="product__item__price">
-                <span class="product__item__yen">&yen;</span>{{ item.price }}
-                <span class="product__item__origin"
-                  >&yen;{{ item.oldPrice }}</span
-                >
+                <span class="product__item__yen">&yen;</span>
+                {{ item.price }}
+                <span
+                  class="product__item__origin"
+                >&yen;{{ item.oldPrice }}</span>
               </p>
             </div>
             <div class="product__number">
@@ -56,8 +49,7 @@
                     changeCartItemInfo(shopId, item._id, item, -1)
                   }
                 "
-                >-</span
-              >
+              >-</span>
               {{ item.count || 0 }}
               <span
                 class="product__number__plus"
@@ -66,24 +58,19 @@
                     changeCartItemInfo(shopId, item._id, item, 1)
                   }
                 "
-                >+</span
-              >
+              >+</span>
             </div>
           </div>
         </template>
       </div>
       <div class="check">
         <div class="check__icon" @click="handleCartShowChange">
-          <img
-            src="http://www.dell-lee.com/imgs/vue3/basket.png"
-            class="check__icon__img"
-          />
+          <img src="http://www.dell-lee.com/imgs/vue3/basket.png" class="check__icon__img" />
           <div class="check__icon__tag">{{ calculations.total }}</div>
         </div>
         <div class="check__info" @click="handleCartShowChange">
-          总计：<span class="check__info__price"
-            >&yen; {{ calculations.price }}</span
-          >
+          总计：
+          <span class="check__info__price">&yen; {{ calculations.price }}</span>
         </div>
         <div class="check__btn">
           <router-link :to="{ name: 'Home' }">去结算</router-link>
@@ -91,13 +78,13 @@
       </div>
     </div>
   </div>
-  <docker :page="1" />
+  <docker :currentIndex="1" />
 </template>
 
 <script>
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import { useCommonCartEffect } from '../shop/commonCartEffect'
+import { useCommonCartEffect } from '../../effects/cartEffects'
 import Docker from '../home/Docker.vue'
 const useCartEffect = (shopId) => {
   const { changeCartItemInfo } = useCommonCartEffect()
@@ -196,7 +183,7 @@ export default {
 @import '../../style/viriables.scss';
 @import '../../style/mixins.scss';
 .wrapper {
-  background: $content-bgColor;
+  background: #f8f8f8;
   position: absolute;
   left: 0;
   top: 0;
@@ -292,7 +279,7 @@ export default {
   }
   &__header {
     display: flex;
-    line-height: 0.52rem;
+    line-height: 0.44rem;
     border-bottom: 0.01rem solid $content-bgColor;
     font-size: 0.14rem;
     color: $content-fontcolor;

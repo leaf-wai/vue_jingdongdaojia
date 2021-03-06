@@ -3,7 +3,7 @@
     <static-part />
     <nearby />
   </div>
-  <docker :page="0" />
+  <docker :currentIndex="0" />
 </template>
 <script>
 import Docker from './Docker.vue'
