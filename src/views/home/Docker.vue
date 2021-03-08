@@ -52,11 +52,13 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/viriables.scss';
 .docker {
+  background: $bgColor;
   display: flex;
   box-sizing: border-box;
   position: absolute;
   padding: 0 0.18rem;
   left: 0;
+  right: 0;
   bottom: 0;
   width: 100%;
   height: 0.49rem;

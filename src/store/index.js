@@ -59,6 +59,10 @@ export default createStore({
       state.cartList[shopId].productList = {}
       setLocalCartList(state)
     },
+    cleanCartAllProducts (state) {
+      state.cartList = {}
+      setLocalCartList(state)
+    },
     setCartItemsChecked (state, payload) {
       const { shopId, checked } = payload
       const products = state.cartList[shopId].productList

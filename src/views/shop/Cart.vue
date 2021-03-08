@@ -1,9 +1,16 @@
 <template>
-  <div class="mask" v-if="showCart && calculations.total > 0" @click="handleCartShowChange" />
+  <div
+    class="mask"
+    v-if="showCart && calculations.total > 0"
+    @click="handleCartShowChange"
+  />
   <div class="cart">
     <div class="product" v-if="showCart && calculations.total > 0">
       <div class="product__header">
-        <div class="product__header__all" @click="() => setCartItemsChecked(shopId)">
+        <div
+          class="product__header__all"
+          @click="() => setCartItemsChecked(shopId)"
+        >
           <span
             class="product__header__icon iconfont"
             v-html="calculations.allChecked ? '&#xe656;' : '&#xe657;'"
@@ -11,18 +18,22 @@
           全选
         </div>
         <div class="product__header__clear">
-          <span @click="() => cleanCartProducts(shopId)" class="product__header__clear__btn">清空购物车</span>
+          <span
+            @click="() => cleanCartProducts(shopId)"
+            class="product__header__clear__btn"
+            >清空购物车</span
+          >
         </div>
       </div>
       <div class="product__item" v-for="item in productList" :key="item._id">
         <div
           class="product__item__checked iconfont"
-          v-html="item.check ? '&#xe656;': '&#xe657;'"
+          v-html="item.check ? '&#xe656;' : '&#xe657;'"
           @click="
-              () => {
-                changeCartItemChecked(shopId, item._id);
-              }
-            "
+            () => {
+              changeCartItemChecked(shopId, item._id)
+            }
+          "
         ></div>
         <img class="product__item__img" :src="item.imgUrl" />
         <div class="product__item__detail">
@@ -35,36 +46,46 @@
         </div>
         <div class="product__number">
           <span
-            class="product__number__minus"
+            class="product__number__minus iconfont"
             @click="
-                () => {
-                  changeCartItemInfo(shopId, item._id, item, -1);
-                }
-              "
-          >-</span>
+              () => {
+                changeCartItemInfo(shopId, item._id, item, -1)
+              }
+            "
+            >&#xe781;</span
+          >
           {{ item.count || 0 }}
           <span
-            class="product__number__plus"
+            class="product__number__plus iconfont"
             @click="
-                () => {
-                  changeCartItemInfo(shopId, item._id, item, 1);
-                }
-              "
-          >+</span>
+              () => {
+                changeCartItemInfo(shopId, item._id, item, 1)
+              }
+            "
+            >&#xe7ba;</span
+          >
         </div>
       </div>
     </div>
     <div class="check">
       <div class="check__icon" @click="handleCartShowChange">
-        <img src="http://www.dell-lee.com/imgs/vue3/basket.png" class="check__icon__img" />
+        <img
+          src="http://www.dell-lee.com/imgs/vue3/basket.png"
+          class="check__icon__img"
+        />
         <div class="check__icon__tag">{{ calculations.total }}</div>
       </div>
       <div class="check__info" @click="handleCartShowChange">
         总计：
         <span class="check__info__price">&yen; {{ calculations.price }}</span>
       </div>
-      <div class="check__btn" v-show="calculations.total > 0">
-        <router-link :to="{path:`/orderConfirmation/${shopId}`}">去结算</router-link>
+      <div
+        class="check__btn"
+        v-show="calculations.total > 0 && calculations.price > 0"
+      >
+        <router-link :to="{ path: `/orderConfirmation/${shopId}` }"
+          >去结算</router-link
+        >
       </div>
     </div>
   </div>
@@ -77,7 +98,9 @@ import { useStore } from 'vuex'
 import { useCommonCartEffect } from '../../effects/cartEffects'
 
 const useCartEffect = (shopId) => {
-  const { productList, calculations, changeCartItemInfo } = useCommonCartEffect(shopId)
+  const { productList, calculations, changeCartItemInfo } = useCommonCartEffect(
+    shopId
+  )
   const store = useStore()
 
   const changeCartItemChecked = (shopId, productId) => {
@@ -293,24 +316,17 @@ export default {
       position: absolute;
       right: 0;
       bottom: 0.26rem;
-      &__minus,
-      &__plus {
-        display: inline-block;
-        width: 0.2rem;
-        height: 0.2rem;
-        border-radius: 50%;
-        line-height: 0.16rem;
-        font-size: 0.2rem;
-        text-align: center;
-      }
+      line-height: 0.18rem;
       &__minus {
-        border: 0.01rem solid $medium-fontColor;
+        position: relative;
+        top: 0.02rem;
         color: $medium-fontColor;
         margin-right: 0.05rem;
       }
       &__plus {
-        background: $btn-bgColor;
-        color: $bgColor;
+        position: relative;
+        top: 0.02rem;
+        color: $btn-bgColor;
         margin-left: 0.05rem;
       }
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="title">我的订单</div>
+    <div class="header">我的订单</div>
     <div class="orders">
       <div class="order" v-for="(item, index) in list" :key="index">
         <div class="order__title">
@@ -66,7 +66,6 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/viriables.scss';
 .wrapper {
-  overflow-y: auto;
   position: absolute;
   left: 0;
   top: 0;
@@ -74,12 +73,26 @@ export default {
   right: 0;
   background: #f8f8f8;
 }
-.title {
+.header {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  right: 0%;
   line-height: 0.44rem;
   background: $bgColor;
   font-size: 0.16rem;
   color: $content-fontcolor;
+  border-bottom: 0.01rem solid $content-bgColor;
   text-align: center;
+  z-index: 1;
+}
+.orders{
+  position: absolute;
+  overflow-y: scroll;
+  top: 0.45rem;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
 }
 .order {
   margin: 0.16rem 0.18rem;

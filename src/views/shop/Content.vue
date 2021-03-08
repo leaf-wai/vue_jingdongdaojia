@@ -9,9 +9,7 @@
         v-for="item in categories"
         :key="item.name"
         @click="() => handleTabClick(item.tab)"
-      >
-        {{ item.name }}
-      </div>
+      >{{ item.name }}</div>
     </div>
     <div class="product">
       <div class="product__item" v-for="item in list" :key="item._id">
@@ -20,26 +18,29 @@
           <h4 class="product__item__title">{{ item.name }}</h4>
           <p class="product__item__sales">月售 {{ item.sales }} 件</p>
           <p class="product__item__price">
-            <span class="product__item__yen">&yen;</span>{{ item.price }}
+            <span class="product__item__yen">&yen;</span>
+            {{ item.price }}
             <span class="product__item__origin">&yen;{{ item.oldPrice }}</span>
           </p>
         </div>
         <div class="product__number">
-          <span class="product__number__minus" @click="
+          <span
+            class="product__number__minus iconfont"
+            @click="
               () => {
                 changeCartItem(shopId, item._id, item, -1, shopName);
               }
-            ">-</span>
+            "
+          >&#xe781;</span>
           {{ getProductCartCount(shopId, item._id) }}
           <span
-            class="product__number__plus"
+            class="product__number__plus iconfont"
             @click="
               () => {
                 changeCartItem(shopId, item._id, item, 1, shopName)
               }
             "
-            >+</span
-          >
+          >&#xe7ba;</span>
         </div>
       </div>
     </div>
@@ -127,8 +128,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/viriables.scss";
-@import "../../style/mixins.scss";
+@import '../../style/viriables.scss';
+@import '../../style/mixins.scss';
 .content {
   display: flex;
   position: absolute;
@@ -201,24 +202,17 @@ export default {
       position: absolute;
       right: 0;
       bottom: 0.12rem;
-      &__minus,
-      &__plus {
-        display: inline-block;
-        width: 0.2rem;
-        height: 0.2rem;
-        border-radius: 50%;
-        line-height: 0.16rem;
-        font-size: 0.2rem;
-        text-align: center;
-      }
+      line-height: 0.18rem;
       &__minus {
-        border: 0.01rem solid $medium-fontColor;
+        position: relative;
+        top: 0.02rem;
         color: $medium-fontColor;
         margin-right: 0.05rem;
       }
       &__plus {
-        background: $btn-bgColor;
-        color: $bgColor;
+        position: relative;
+        top: 0.02rem;
+        color: $btn-bgColor;
         margin-left: 0.05rem;
       }
     }
